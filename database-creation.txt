@@ -5,9 +5,8 @@ CREATE TABLE alunos(
    cidade varchar2(30),
    num_curso number,
    PRIMARY KEY(ra)
+   CONSTRAINT num_curso_aluno FOREIGN KEY(num_curso) REFERENCES CURSOS(num);
 );
-
-ALTER TABLE ALUNOS ADD CONSTRAINT FK_num_curso FOREIGN KEY(num_curso) REFERENCES CURSOS(num);
 
 CREATE TABLE disciplinas(
    cod number,
@@ -26,8 +25,8 @@ CREATE TABLE cursos(
 CREATE TABLE matriculas(
    ra number,
    cod_disc number,
-   CONSTRAINT cod_disc FOREIGN KEY(cod_disc) REFERENCES DISCIPLINAS(cod),
-   CONSTRAINT ra FOREIGN KEY(ra) REFERENCES ALUNOS(ra)
+   CONSTRAINT cod_disc_matriculada FOREIGN KEY(cod_disc) REFERENCES DISCIPLINAS(cod),
+   CONSTRAINT ra_matriculado FOREIGN KEY(ra) REFERENCES ALUNOS(ra)
 );
 
 #////////////////////////////////
@@ -38,17 +37,17 @@ CREATE TABLE cursadas(
    sem_ano date,
    nota number(5,2),
    freq number(5,2),
-   status varchar2,
-   CONSTRAINT cod_disc FOREIGN KEY(cod_disc) REFERENCES DISCIPLINAS(cod),
-   CONSTRAINT ra FOREIGN KEY(ra) REFERENCES ALUNOS(ra),
+   status varchar2(10),
+   CONSTRAINT cod_disc_cursada FOREIGN KEY(cod_disc) REFERENCES DISCIPLINAS(cod),
+   CONSTRAINT ra_cursou FOREIGN KEY(ra) REFERENCES ALUNOS(ra),
    PRIMARY KEY(sem_ano)
 );
 
 CREATE TABLE grade(
    num_curso number,
    cod_disc number,
-   CONSTRAINT cod_disc FOREIGN KEY(cod_disc) REFERENCES DISCIPLINAS(cod),
-   CONSTRAINT num_curso FOREIGN KEY(num_curso) REFERENCES CURSOS(num)
+   CONSTRAINT cod_disc_grade FOREIGN KEY(cod_disc) REFERENCES DISCIPLINAS(cod),
+   CONSTRAINT num_curso_grade FOREIGN KEY(num_curso) REFERENCES CURSOS(num)
 );
 
 CREATE TABLE alunos_grad(
@@ -64,8 +63,8 @@ CREATE TABLE alunos_pos(
 CREATE TABLE pre_req(
    cod_disc number,
    cod_pre_req number,
-   CONSTRAINT cod_disc FOREIGN KEY(cod_disc) REFERENCES DISCIPLINAS(cod),
-   CONSTRAINT cod_pre_req FOREIGN KEY(cod_pre_req) REFERENCES DISCIPLINAS(cod)
+   CONSTRAINT cod_disc_requisitada FOREIGN KEY(cod_disc) REFERENCES DISCIPLINAS(cod),
+   CONSTRAINT cod_disc_pre_requisito FOREIGN KEY(cod_pre_req) REFERENCES DISCIPLINAS(cod)
 );
 
 
