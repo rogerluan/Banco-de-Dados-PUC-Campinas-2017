@@ -46,8 +46,8 @@ CREATE TABLE cursadas(
 CREATE TABLE grade(
    num_curso number,
    cod_disc number,
-   CONSTRAINT cod_disc_grade FOREIGN KEY(cod_disc) REFERENCES DISCIPLINAS(cod),
-   CONSTRAINT num_curso_grade FOREIGN KEY(num_curso) REFERENCES CURSOS(num)
+   CONSTRAINT num_curso_grade FOREIGN KEY(num_curso) REFERENCES CURSOS(num),
+   CONSTRAINT cod_disc_grade FOREIGN KEY(cod_disc) REFERENCES DISCIPLINAS(cod)
 );
 
 CREATE TABLE alunos_grad(
