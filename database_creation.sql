@@ -66,9 +66,3 @@ CREATE TABLE pre_req(
    CONSTRAINT cod_disc_requisitada FOREIGN KEY(cod_disc) REFERENCES DISCIPLINAS(cod),
    CONSTRAINT cod_disc_pre_requisito FOREIGN KEY(cod_pre_req) REFERENCES DISCIPLINAS(cod)
 );
-
-
-http://www.generatedata.com
-
-http://stackoverflow.com/questions/9618011/converting-varchar-column-to-date-column-in-oracle
-
