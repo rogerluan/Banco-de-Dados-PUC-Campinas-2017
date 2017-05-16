@@ -1,11 +1,11 @@
 CREATE TABLE alunos(
    ra number,
    nome varchar2(50),
-   data_nasc date,
+   data_nasc varchar2(30),
    cidade varchar2(30),
    num_curso number,
-   PRIMARY KEY(ra)
-   CONSTRAINT num_curso_aluno FOREIGN KEY(num_curso) REFERENCES CURSOS(num);
+   PRIMARY KEY(ra),
+   CONSTRAINT num_curso_aluno FOREIGN KEY(num_curso) REFERENCES CURSOS(num)
 );
 
 CREATE TABLE disciplinas(
