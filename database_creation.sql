@@ -34,7 +34,6 @@ CREATE TABLE matriculas(
 CREATE TABLE cursadas(
    ra number,
    cod_disc number,
-   sem_ano date,
    nota number(5,2),
    freq number(5,2),
    status varchar2(10),
@@ -42,6 +41,8 @@ CREATE TABLE cursadas(
    CONSTRAINT ra_cursou FOREIGN KEY(ra) REFERENCES ALUNOS(ra),
    PRIMARY KEY(sem_ano)
 );
+
+ALTER TABLE cursadas ADD sem_ano date;
 
 CREATE TABLE grade(
    num_curso number,

@@ -81,14 +81,14 @@ INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (28,29,7.93,69.42);
 INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (29,18,6.74,92.43);
 INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (30,7,2.77,79.23);
 
-ALTER TABLE cursadas INSERT COLUMN 
+ALTER TABLE cursadas ADD sem_ano date;
 
-UPDATE cursadas SET sem_ano = to_date('01/2012','mm/yyyy') WHERE ra >=  1 AND ra <= 20;
-UPDATE cursadas SET sem_ano = to_date('01/2013','mm/yyyy') WHERE ra >=  21 AND ra <= 40;
-UPDATE cursadas SET sem_ano = to_date('07/2013','mm/yyyy') WHERE ra >=  41 AND ra <= 50;
-UPDATE cursadas SET sem_ano = to_date('01/2014','mm/yyyy') WHERE ra >=  51 AND ra <= 60;
-UPDATE cursadas SET sem_ano = to_date('01/2015','mm/yyyy') WHERE ra >=  61 AND ra <= 70;
-UPDATE cursadas SET sem_ano = to_date('01/2016','mm/yyyy') WHERE ra >=  71 AND ra <= 80;
+UPDATE cursadas SET sem_ano = to_date('01/2012','mm/yyyy') WHERE ra >=  1 AND ra <= 15;
+UPDATE cursadas SET sem_ano = to_date('01/2013','mm/yyyy') WHERE ra >=  16 AND ra <= 25;
+UPDATE cursadas SET sem_ano = to_date('07/2013','mm/yyyy') WHERE ra >=  26 AND ra <= 30;
+UPDATE cursadas SET sem_ano = to_date('01/2014','mm/yyyy') WHERE ra >=  31 AND ra <= 40;
+UPDATE cursadas SET sem_ano = to_date('01/2015','mm/yyyy') WHERE ra >=  41 AND ra <= 45;
+UPDATE cursadas SET sem_ano = to_date('01/2016','mm/yyyy') WHERE ra >=  46 AND ra <= 50;
 
 UPDATE cursadas SET status = 'aprovado' WHERE nota >= 5.0 AND freq >= 75.00;
 UPDATE cursadas SET status = 'reprovado';
