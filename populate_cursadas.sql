@@ -90,29 +90,27 @@ UPDATE cursadas SET sem_ano = to_date('01/2014','mm/yyyy') WHERE ra >=  31 AND r
 UPDATE cursadas SET sem_ano = to_date('01/2015','mm/yyyy') WHERE ra >=  41 AND ra <= 45;
 UPDATE cursadas SET sem_ano = to_date('01/2016','mm/yyyy') WHERE ra >=  46 AND ra <= 50;
 
-UPDATE cursadas SET status = 'aprovado' WHERE nota >= 5.0 AND freq >= 75.00;
 UPDATE cursadas SET status = 'reprovado';
+UPDATE cursadas SET status = 'aprovado' WHERE nota >= 5.0 AND freq >= 75.00;
 
 
-
-
-INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (81,28,3.68,98.49);
-INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (82,13,2.41,70.62);
-INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (83,25,7.83,73.86);
-INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (84,20,2.60,78.36);
-INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (85,15,6.85,83.51);
-INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (86,16,9.09,65.28);
-INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (87,11,5.18,99.41);
-INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (88,28,1.00,92.21);
-INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (89,10,8.67,79.48);
-INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (90,5,4.46,91.01);
-INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (91,6,3.13,77.99);
-INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (92,10,9.64,70.83);
-INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (93,26,0.37,65.92);
-INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (94,2,0.43,80.11);
-INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (95,11,3.37,67.25);
-INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (96,12,6.52,72.99);
-INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (97,3,0.51,73.36);
-INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (98,20,3.76,67.09);
-INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (99,4,3.12,86.59);
-INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (100,3,4.03,85.51);
+-- INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (81,28,3.68,98.49);
+-- INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (82,13,2.41,70.62);
+-- INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (83,25,7.83,73.86);
+-- INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (84,20,2.60,78.36);
+-- INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (85,15,6.85,83.51);
+-- INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (86,16,9.09,65.28);
+-- INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (87,11,5.18,99.41);
+-- INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (88,28,1.00,92.21);
+-- INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (89,10,8.67,79.48);
+-- INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (90,5,4.46,91.01);
+-- INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (91,6,3.13,77.99);
+-- INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (92,10,9.64,70.83);
+-- INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (93,26,0.37,65.92);
+-- INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (94,2,0.43,80.11);
+-- INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (95,11,3.37,67.25);
+-- INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (96,12,6.52,72.99);
+-- INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (97,3,0.51,73.36);
+-- INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (98,20,3.76,67.09);
+-- INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (99,4,3.12,86.59);
+-- INSERT INTO cursadas (ra,cod_disc,nota,freq) VALUES (100,3,4.03,85.51);
