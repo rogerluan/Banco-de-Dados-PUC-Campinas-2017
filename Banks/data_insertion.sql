@@ -21,8 +21,8 @@ before insert on movimentos
 for each row
 begin 
 	select inc_movimentos.nextval into :new.num_mov from dual;
-	sysdate into:new.date;
+	select sysdate into:new.data from dual;
 end;
 /
 
-insert into movimentos (num_conta, num_agencia, )
+insert into movimentos (num_conta, num_agencia, ) 
