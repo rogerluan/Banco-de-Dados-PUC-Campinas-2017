@@ -17,8 +17,12 @@ insert into contas values (6, 3, 'pedro', 0);
 create sequence inc_movimentos start with 1 increment by 1;
 
 create or replace trigger trigger_inc_movimentos
-	before insert on movimentos 
-	for each row
-	begin 
-		select inc_movimentos.nextval into :new.num_mov from dual;
-	end;
+before insert on movimentos 
+for each row
+begin 
+	select inc_movimentos.nextval into :new.num_mov from dual;
+	sysdate into:new.date;
+end;
+/
+
+insert into movimentos (num_conta, num_agencia, )
