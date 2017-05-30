@@ -11,7 +11,7 @@ create table contas(
 	saldo number(15,2),
 	primary key(num_conta),
 	constraint num_agencia_conta foreign key (num_agencia) references agencias(num_agencia)
-)
+);
 
 create table movimentos(
 	num_mov number,
@@ -21,7 +21,6 @@ create table movimentos(
 	tipo char,
 	valor number(15,2),
 	primary key(num_mov),
-	constraint num_conta_mov foreign key (num_conta) references agencias(num_conta),
+	constraint num_conta_mov foreign key (num_conta) references contas(num_conta),
 	constraint num_agencia_mov foreign key (num_agencia) references agencias(num_agencia)
-)
-
+);
