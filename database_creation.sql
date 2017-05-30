@@ -1,3 +1,10 @@
+CREATE TABLE cursos(
+   num number,
+   nome varchar2(50),
+   local varchar2(30),
+   PRIMARY KEY(num)
+);
+
 CREATE TABLE alunos(
    ra number,
    nome varchar2(50),
@@ -5,7 +12,7 @@ CREATE TABLE alunos(
    cidade varchar2(30),
    num_curso number,
    PRIMARY KEY(ra),
-   CONSTRAINT num_curso_aluno FOREIGN KEY(num_curso) REFERENCES CURSOS(num)
+   CONSTRAINT num_curso_aluno FOREIGN KEY(num_curso) REFERENCES cursos(num)
 );
 
 CREATE TABLE disciplinas(
@@ -13,13 +20,6 @@ CREATE TABLE disciplinas(
    nome varchar2(50),
    creditos number,
    PRIMARY KEY(cod)
-);
-
-CREATE TABLE cursos(
-   num number,
-   nome varchar2(50),
-   local varchar2(30),
-   PRIMARY KEY(num)
 );
 
 CREATE TABLE matriculas(
