@@ -1,3 +1,4 @@
+-- 1 --
 create table agencias(
 	num_agencia number,
 	cidade varchar2(20),
