@@ -86,18 +86,13 @@ END;
 
 -- 10 -- Criar outra função para, dada uma cidade, retornar o valor médio dos movimentos (créditos e débitos) nela ocorridos. Idem sobre a consideração do local da agência acima.
 create or replace function average_mov(city in varchar2)
-return number is
+return number
+is 
+	average_value number;
 begin
-	return select avg(valor) from * movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city;
+	select avg(valor) into average_value from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city;
+	return average_value;
 end;
-/
-
-	create or replace function logMessage (msg in varchar2)
-return number is
-begin
-    null;    
-    return 1;
-end logMessage;
 /
 
 -- 11 -- Eu poderia criar uma função única para retornar os três valores dos três exercícios anteriores? Explique.
