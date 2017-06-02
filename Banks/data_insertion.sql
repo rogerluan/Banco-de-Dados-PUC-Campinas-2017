@@ -67,34 +67,35 @@ end;
 /
 
 -- 8 -- Criar uma função para, dada uma cidade, retornar o “resultado” (em valor) de movimentos (valor dos créditos menos valor dos débitos) nela ocorridos. A cidade considerada é aquela da agência onde ocorreu o movimento e não da agência da conta.
-create or replace function balance_by_city()
-
-CREATE OR REPLACE FUNCTION totalCustomers 
-RETURN number IS 
-   total number(2) := 0; 
-BEGIN 
-   SELECT count(*) into total 
-   FROM customers; 
-    
-   RETURN total; 
-END; 
-/ 
-
-
--- 9 -- Criar outra função para, dada uma cidade, retornar a quantidade de movimentos (número de movimentos de créditos e débitos) nela ocorridos. Idem sobre a consideração do local da agência acima.
-create or replace function mov_count(city in varchar2)
+create or replace function balance_by_city(city in varchar2)
 return number
 is
-	mov_count_value number;
+	credit number;
+	debit number
 begin
-	select count(*) into mov_count_value from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city;
-	return mov_count_value;
+	select sum(value) into credit from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city and movimento.tipo = 'c';
+	select sum(value) into debit from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city and movimento.tipo = 'd';
+	return credit-debit;
 end;
 /
 
+select balance_by_city('campinas') from dual;
+
+-- 9 -- Criar outra função para, dada uma cidade, retornar a quantidade de movimentos (número de movimentos de créditos e débitos) nela ocorridos. Idem sobre a consideração do local da agência acima.
+create or replace function mov_count_by_city(city in varchar2)
+return number
+is
+	mov_count number;
+begin
+	select count(*) into mov_count from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city;
+	return mov_count;
+end;
+/
+
+select mov_count_by_city('campinas') from dual;
 
 -- 10 -- Criar outra função para, dada uma cidade, retornar o valor médio dos movimentos (créditos e débitos) nela ocorridos. Idem sobre a consideração do local da agência acima.
-create or replace function average_mov(city in varchar2)
+create or replace function average_mov_by_city(city in varchar2)
 return number
 is 
 	average_value number;
