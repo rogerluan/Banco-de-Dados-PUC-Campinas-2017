@@ -21,8 +21,51 @@ before insert on movimentos
 for each row
 begin 
 	select inc_movimentos.nextval into :new.num_mov from dual;
-	select sysdate into:new.data from dual;
+	select sysdate into :new.data from dual;
 end;
 /
 
-insert into movimentos (num_conta, num_agencia, ) 
+insert into movimentos (num_conta, num_agencia, tipo, valor) values (1, 1, 'c', 1000);
+insert into movimentos (num_conta, num_agencia, tipo, valor) values (2, 1, 'd', 239);
+insert into movimentos (num_conta, num_agencia, tipo, valor) values (3, 2, 'c', 9483);
+insert into movimentos (num_conta, num_agencia, tipo, valor) values (4, 2, 'c', 8473);
+insert into movimentos (num_conta, num_agencia, tipo, valor) values (5, 3, 'd', 4323);
+insert into movimentos (num_conta, num_agencia, tipo, valor) values (6, 3, 'c', 3289);
+insert into movimentos (num_conta, num_agencia, tipo, valor) values (1, 1, 'd', 5490);
+insert into movimentos (num_conta, num_agencia, tipo, valor) values (2, 1, 'd', 5940);
+insert into movimentos (num_conta, num_agencia, tipo, valor) values (3, 2, 'd', 7690);
+insert into movimentos (num_conta, num_agencia, tipo, valor) values (4, 2, 'c', 2190);
+insert into movimentos (num_conta, num_agencia, tipo, valor) values (5, 3, 'c', 8745);
+insert into movimentos (num_conta, num_agencia, tipo, valor) values (6, 3, 'c', 9230);
+
+
+create or replace procedure update_balance is
+begin
+for movimento in (select * from movimentos) loop
+	if movimento.tipo == 'c' then
+		update contas set valor = ((select valor from contas where num_conta = movimento.num_conta) + movimento.valor) where num_conta = movimento.num_conta;
+	elsif movimento.tipo == 'd' then
+		update contas set valor = ((select valor from contas where num_conta = movimento.num_conta) - movimento.valor) where num_conta = movimento.num_conta;
+	end id;
+end loop;
+end;
+/
+
+create or replace trigger trigger_update_balance
+before insert on movimentos
+for each row
+begin
+	if :new.tipo == 'c' then
+		update contas set valor = ((select valor from contas where num_conta = :new.num_conta) + :new.valor) where num_conta = :new.num_conta;
+	elsif :new.tipo == 'd' then
+		update contas set valor = ((select valor from contas where num_conta = :new.num_conta) - :new.valor) where num_conta = :new.num_conta;
+	end id;
+	
+end;
+/
+
+
+
+
+
+
