@@ -55,14 +55,29 @@ create or replace trigger trigger_update_balance
 before insert on movimentos
 for each row
 begin
-	if :new.tipo == 'c' then
+	if :new.tipo = 'c' then
 		update contas set valor = ((select valor from contas where num_conta = :new.num_conta) + :new.valor) where num_conta = :new.num_conta;
-	elsif :new.tipo == 'd' then
+	elsif :new.tipo = 'd' then
 		update contas set valor = ((select valor from contas where num_conta = :new.num_conta) - :new.valor) where num_conta = :new.num_conta;
 	end id;
 	
 end;
 /
+
+-- 8 -- Criar uma função para, dada uma cidade, retornar o “resultado” (em valor) de movimentos (valor dos créditos menos valor dos débitos) nela ocorridos. A cidade considerada é aquela da agência onde ocorreu o movimento e não da agência da conta.
+create or replace function balance_by_city()
+
+CREATE OR REPLACE FUNCTION totalCustomers 
+RETURN number IS 
+   total number(2) := 0; 
+BEGIN 
+   SELECT count(*) into total 
+   FROM customers; 
+    
+   RETURN total; 
+END; 
+/ 
+
 
 
 
