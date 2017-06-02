@@ -95,6 +95,8 @@ begin
 end;
 /
 
+select average_mov('campinas') from dual;
+
 -- 11 -- Eu poderia criar uma função única para retornar os três valores dos três exercícios anteriores? Explique.
 
 
