@@ -74,8 +74,7 @@ create or replace procedure update_balance is
 begin
 for cidade in (select cidade distinct from agencias) loop
 
-	
-
+	dbms_output.put_line ('CIDADE          RESULTADO          QTDE_MOV_CREDITOS         VALOR_MEDIO_MOVIMENTO');
 end loop;
 end;
 /
