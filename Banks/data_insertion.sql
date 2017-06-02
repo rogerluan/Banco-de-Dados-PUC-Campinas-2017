@@ -88,6 +88,7 @@ is
 	mov_count_value number;
 begin
 	select count(*) into mov_count_value from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city;
+	return mov_count_value;
 end;
 /
 
