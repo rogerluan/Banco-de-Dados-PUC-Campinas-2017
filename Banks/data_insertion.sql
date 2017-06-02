@@ -56,9 +56,9 @@ before insert on movimentos
 for each row
 begin
 	if :new.tipo = 'c' then
-		update contas set valor = ((select valor from contas where num_conta = :new.num_conta) + :new.valor) where num_conta = :new.num_conta;
+		update contas set saldo = ((select saldo from contas where num_conta = :new.num_conta) + :new.valor) where num_conta = :new.num_conta;
 	elsif :new.tipo = 'd' then
-		update contas set valor = ((select valor from contas where num_conta = :new.num_conta) - :new.valor) where num_conta = :new.num_conta;
+		update contas set saldo = ((select saldo from contas where num_conta = :new.num_conta) - :new.valor) where num_conta = :new.num_conta;
 	end if;
 	
 end;
