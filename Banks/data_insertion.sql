@@ -82,6 +82,14 @@ END;
 
 
 -- 9 -- Criar outra função para, dada uma cidade, retornar a quantidade de movimentos (número de movimentos de créditos e débitos) nela ocorridos. Idem sobre a consideração do local da agência acima.
+create or replace function mov_count(city in varchar2)
+return number
+is
+	mov_count_value number;
+begin
+	select count(*) into mov_count_value from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city;
+end;
+/
 
 
 -- 10 -- Criar outra função para, dada uma cidade, retornar o valor médio dos movimentos (créditos e débitos) nela ocorridos. Idem sobre a consideração do local da agência acima.
