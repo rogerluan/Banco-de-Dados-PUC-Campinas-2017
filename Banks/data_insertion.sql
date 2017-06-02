@@ -71,7 +71,7 @@ create or replace function balance_by_city(city in varchar2)
 return number
 is
 	credit number;
-	debit number
+	debit number;
 begin
 	select sum(value) into credit from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city and movimento.tipo = 'c';
 	select sum(value) into debit from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city and movimento.tipo = 'd';
