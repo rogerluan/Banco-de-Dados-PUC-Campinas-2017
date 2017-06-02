@@ -46,7 +46,7 @@ for movimento in (select * from movimentos) loop
 		update contas set valor = ((select valor from contas where num_conta = movimento.num_conta) + movimento.valor) where num_conta = movimento.num_conta;
 	elsif movimento.tipo = 'd' then
 		update contas set valor = ((select valor from contas where num_conta = movimento.num_conta) - movimento.valor) where num_conta = movimento.num_conta;
-	end id;
+	end if;
 end loop;
 end;
 /
@@ -59,7 +59,7 @@ begin
 		update contas set valor = ((select valor from contas where num_conta = :new.num_conta) + :new.valor) where num_conta = :new.num_conta;
 	elsif :new.tipo = 'd' then
 		update contas set valor = ((select valor from contas where num_conta = :new.num_conta) - :new.valor) where num_conta = :new.num_conta;
-	end id;
+	end if;
 	
 end;
 /
