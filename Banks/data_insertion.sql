@@ -73,8 +73,8 @@ is
 	credit number;
 	debit number;
 begin
-	select sum(value) into credit from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city and movimentos.tipo = 'c';
-	select sum(value) into debit from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city and movimentos.tipo = 'd';
+	select sum(valor) into credit from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city and movimentos.tipo = 'c';
+	select sum(valor) into debit from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city and movimentos.tipo = 'd';
 	return credit-debit;
 end;
 /
