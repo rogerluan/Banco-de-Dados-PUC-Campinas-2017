@@ -43,9 +43,9 @@ create or replace procedure update_balance is
 begin
 for movimento in (select * from movimentos) loop
 	if movimento.tipo = 'c' then
-		update contas set valor = ((select valor from contas where num_conta = movimento.num_conta) + movimento.valor) where num_conta = movimento.num_conta;
+		update contas set saldo = ((select saldo from contas where num_conta = movimento.num_conta) + movimento.valor) where num_conta = movimento.num_conta;
 	elsif movimento.tipo = 'd' then
-		update contas set valor = ((select valor from contas where num_conta = movimento.num_conta) - movimento.valor) where num_conta = movimento.num_conta;
+		update contas set saldo = ((select saldo from contas where num_conta = movimento.num_conta) - movimento.valor) where num_conta = movimento.num_conta;
 	end if;
 end loop;
 end;
