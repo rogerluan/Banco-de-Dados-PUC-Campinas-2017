@@ -71,10 +71,10 @@ select average_mov('campinas') from dual;
 
 -- 12 --
 create or replace procedure update_balance is
+	balance number;
+	mov_count number;
+	average_mov number;
 begin
-balance number;
-mov_count number;
-average_mov number;
 dbms_output.put_line ('CIDADE		RESULTADO		QTDE_MOV_CREDITOS		VALOR_MEDIO_MOVIMENTO');
 for cidade in (select cidade distinct from agencias) loop
 	select balance_by_city(cidade.nome) into balance from dual;
