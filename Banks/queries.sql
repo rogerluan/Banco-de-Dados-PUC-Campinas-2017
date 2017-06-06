@@ -75,7 +75,7 @@ create or replace procedure update_balance is
 	mov_count number;
 	average_mov number;
 begin
-dbms_output.put_line ('CIDADE' || CHR(9) || 'RESULTADO' || CHR(9) || 'QTDE_MOV_CREDITOS'  || CHR(9) || 'VALOR_MEDIO_MOVIMENTO');
+dbms_output.put_line ('CIDADE' || CHR(9) || CHR(9) || 'RESULTADO' || CHR(9) || 'QTDE_MOV_CREDITOS'  || CHR(9) || 'VALOR_MEDIO_MOVIMENTO');
 for agencia in (select distinct cidade from agencias) loop
 	select balance_by_city(agencia.cidade) into balance from dual;
 	select mov_count_by_city(agencia.cidade) into mov_count from dual;
