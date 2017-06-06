@@ -14,8 +14,8 @@ insert into contas values (4, 2, 'gabriela', 0);
 insert into contas values (5, 3, 'bruna', 0);
 insert into contas values (6, 3, 'pedro', 0);
 
-insert into contas values (7, 5, 'bruna', 0);
-insert into contas values (8, 6, 'pedro', 0);
+insert into contas values (7, 5, 'roger', 0);
+insert into contas values (8, 6, 'michael', 0);
 
 -- 4 --
 create sequence inc_movimentos start with 1 increment by 1;
