@@ -6,6 +6,8 @@ insert into agencias values (4, 'sao paulo');
 insert into agencias values (5, 'guaruja');
 insert into agencias values (6, 'guaruja');
 
+update agencias set nome = 'indaiatuba' where agencias.num_agencia = 5 AND agencias.num_agencia = 6;
+
 -- 3 --
 insert into contas values (1, 1, 'bruno', 0);
 insert into contas values (2, 1, 'gabriel', 0);
@@ -13,7 +15,6 @@ insert into contas values (3, 2, 'laura', 0);
 insert into contas values (4, 2, 'gabriela', 0);
 insert into contas values (5, 3, 'bruna', 0);
 insert into contas values (6, 3, 'pedro', 0);
-
 insert into contas values (7, 5, 'roger', 0);
 insert into contas values (8, 6, 'michael', 0);
 
