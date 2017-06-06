@@ -14,6 +14,9 @@ insert into contas values (4, 2, 'gabriela', 0);
 insert into contas values (5, 3, 'bruna', 0);
 insert into contas values (6, 3, 'pedro', 0);
 
+insert into contas values (7, 5, 'bruna', 0);
+insert into contas values (8, 6, 'pedro', 0);
+
 -- 4 --
 create sequence inc_movimentos start with 1 increment by 1;
 create or replace trigger trigger_inc_movimentos
@@ -38,6 +41,13 @@ insert into movimentos (num_conta, num_agencia, tipo, valor) values (3, 2, 'd', 
 insert into movimentos (num_conta, num_agencia, tipo, valor) values (4, 2, 'c', 2190);
 insert into movimentos (num_conta, num_agencia, tipo, valor) values (5, 3, 'c', 8745);
 insert into movimentos (num_conta, num_agencia, tipo, valor) values (6, 3, 'c', 9230);
+
+insert into movimentos (num_conta, num_agencia, tipo, valor) values (7, 5, 'd', 4239);
+insert into movimentos (num_conta, num_agencia, tipo, valor) values (8, 6, 'd', 6459);
+insert into movimentos (num_conta, num_agencia, tipo, valor) values (7, 5, 'd', 4530);
+insert into movimentos (num_conta, num_agencia, tipo, valor) values (8, 6, 'c', 3129);
+insert into movimentos (num_conta, num_agencia, tipo, valor) values (7, 5, 'c', 4233);
+insert into movimentos (num_conta, num_agencia, tipo, valor) values (8, 6, 'c', 6509);
 
 
 
