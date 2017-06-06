@@ -80,7 +80,7 @@ for agencia in (select distinct cidade from agencias) loop
 	select balance_by_city(agencia.cidade) into balance from dual;
 	select mov_count_by_city(agencia.cidade) into mov_count from dual;
 	select average_mov_by_city(agencia.cidade) into average_mov from dual;
-	dbms_output.put_line (agencia.cidade		balance		mov_count		average_mov);
+	dbms_output.put_line (agencia.cidade	||	balance	||	mov_count	||	average_mov);
 end loop;
 end;
 /
