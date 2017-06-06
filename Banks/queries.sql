@@ -76,11 +76,11 @@ create or replace procedure update_balance is
 	average_mov number;
 begin
 dbms_output.put_line ('CIDADE		RESULTADO		QTDE_MOV_CREDITOS		VALOR_MEDIO_MOVIMENTO');
-for cidade in (select cidade distinct from agencias) loop
-	select balance_by_city(cidade.nome) into balance from dual;
-	select mov_count_by_city(cidade.nome) into mov_count from dual;
-	select average_mov_by_city(cidade.nome) into average_mov from dual;
-	dbms_output.put_line (cidade.nome		balance		mov_count		average_mov);
+for agencia in (select agencias.cidade distinct from agencias) loop
+	select balance_by_city(agencia.cidade) into balance from dual;
+	select mov_count_by_city(agencia.cidade) into mov_count from dual;
+	select average_mov_by_city(agencia.cidade) into average_mov from dual;
+	dbms_output.put_line (agencia.cidade		balance		mov_count		average_mov);
 end loop;
 end;
 /
