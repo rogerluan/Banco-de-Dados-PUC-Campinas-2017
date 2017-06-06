@@ -29,8 +29,8 @@ end;
 create or replace function balance_by_city(city in varchar2)
 return number
 is
-	credit number;
-	debit number;
+	credit number := 0;
+	debit number := 0;
 begin
 	select sum(valor) into credit from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city and movimentos.tipo = 'c';
 	select sum(valor) into debit from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city and movimentos.tipo = 'd';
@@ -44,7 +44,7 @@ select balance_by_city('campinas') from dual;
 create or replace function mov_count_by_city(city in varchar2)
 return number
 is
-	mov_count number;
+	mov_count number := 0;
 begin
 	select count(*) into mov_count from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city;
 	return mov_count;
@@ -57,7 +57,7 @@ select mov_count_by_city('campinas') from dual;
 create or replace function average_mov_by_city(city in varchar2)
 return number
 is 
-	average_value number;
+	average_value number := 0;
 begin
 	select avg(valor) into average_value from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city;
 	return average_value;
@@ -80,7 +80,7 @@ for agencia in (select distinct cidade from agencias) loop
 	select balance_by_city(agencia.cidade) into balance from dual;
 	select mov_count_by_city(agencia.cidade) into mov_count from dual;
 	select average_mov_by_city(agencia.cidade) into average_mov from dual;
-	dbms_output.put_line (agencia.cidade || CHR(9) || balance || CHR(9) || CHR(9) || mov_count || CHR(9) || average_mov);
+	dbms_output.put_line (agencia.cidade || CHR(9) || balance || CHR(9) || CHR(9) || mov_count || CHR(9) || CHR(9) ||average_mov);
 end loop;
 end;
 /
