@@ -3,10 +3,8 @@ insert into agencias values (1, 'campinas');
 insert into agencias values (2, 'campinas');
 insert into agencias values (3, 'sao paulo');
 insert into agencias values (4, 'sao paulo');
-insert into agencias values (5, 'guaruja');
-insert into agencias values (6, 'guaruja');
-
-update agencias set cidade = 'indaiatuba' where agencias.num_agencia = 5 OR agencias.num_agencia = 6;
+insert into agencias values (5, 'indaiatuba');
+insert into agencias values (6, 'indaiatuba');
 
 -- 3 --
 insert into contas values (1, 1, 'bruno', 0);
@@ -42,7 +40,6 @@ insert into movimentos (num_conta, num_agencia, tipo, valor) values (3, 2, 'd', 
 insert into movimentos (num_conta, num_agencia, tipo, valor) values (4, 2, 'c', 2190);
 insert into movimentos (num_conta, num_agencia, tipo, valor) values (5, 3, 'c', 8745);
 insert into movimentos (num_conta, num_agencia, tipo, valor) values (6, 3, 'c', 9230);
-
 insert into movimentos (num_conta, num_agencia, tipo, valor) values (7, 5, 'd', 4239);
 insert into movimentos (num_conta, num_agencia, tipo, valor) values (8, 6, 'd', 6459);
 insert into movimentos (num_conta, num_agencia, tipo, valor) values (7, 5, 'd', 4530);
