@@ -1,0 +1,1 @@
+create view conta_cidade as (select num_conta, contas.num_agencia, cidade, nome_titular, saldo where agencias.num_agencia = contas.num_agencia);

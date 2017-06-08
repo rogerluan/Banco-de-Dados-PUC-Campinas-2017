@@ -45,9 +45,15 @@ create or replace function mov_count_by_city(city in varchar2)
 return number
 is
 	mov_count number := 0;
+	city_existence number;
 begin
-	select count(*) into mov_count from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city;
-	return mov_count;
+	select count(*) into city_existence from agencias where cidade = city;
+	if city_existence = 0 then
+		return 'Cidade nao existente';
+	else
+		select count(*) into mov_count from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city;
+		return mov_count;
+	end if;
 end;
 /
 
