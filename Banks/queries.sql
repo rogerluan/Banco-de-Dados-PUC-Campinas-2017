@@ -71,17 +71,17 @@ select mov_count_by_city('campinas') from dual;
 
 -- 10 -- Criar outra função para, dada uma cidade, retornar o valor médio dos movimentos (créditos e débitos) nela ocorridos. Idem sobre a consideração do local da agência acima.
 create or replace function average_mov_by_city(city in varchar2)
-return number
+return varchar2
 is 
 	average_value number := 0;
-	city_existence varchar2;
+	city_existence number;
 begin
 	select count(*) into city_existence from agencias where cidade = city;
 	if city_existence = 0 then
 		return 'Cidade inexistente';
 	else
 		select avg(valor) into average_value from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city;
-		return average_value;
+		return to_char(average_value);
 	end if;
 end;
 /
