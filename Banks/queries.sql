@@ -17,6 +17,10 @@ create or replace trigger trigger_update_balance
 before insert on movimentos
 for each row
 begin
+	select count(*) into city_existence from agencias where cidade = city;
+	if city_existence = 0 then
+		return -1;
+	else
 	if :new.tipo = 'c' then
 		update contas set saldo = ((select saldo from contas where num_conta = :new.num_conta) + :new.valor) where num_conta = :new.num_conta;
 	elsif :new.tipo = 'd' then
@@ -31,10 +35,16 @@ return number
 is
 	credit number := 0;
 	debit number := 0;
+	city_existence number;
 begin
-	select sum(valor) into credit from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city and movimentos.tipo = 'c';
-	select sum(valor) into debit from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city and movimentos.tipo = 'd';
-	return credit-debit;
+	select count(*) into city_existence from agencias where cidade = city;
+	if city_existence = 0 then
+		return -1;
+	else
+		select sum(valor) into credit from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city and movimentos.tipo = 'c';
+		select sum(valor) into debit from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city and movimentos.tipo = 'd';
+		return credit-debit;
+	end if;
 end;
 /
 
@@ -64,9 +74,15 @@ create or replace function average_mov_by_city(city in varchar2)
 return number
 is 
 	average_value number := 0;
+	city_existence number;
 begin
-	select avg(valor) into average_value from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city;
-	return average_value;
+	select count(*) into city_existence from agencias where cidade = city;
+	if city_existence = 0 then
+		return -1;
+	else
+		select avg(valor) into average_value from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city;
+		return average_value;
+	end if;
 end;
 /
 
