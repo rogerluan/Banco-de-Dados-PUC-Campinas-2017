@@ -74,11 +74,11 @@ create or replace function average_mov_by_city(city in varchar2)
 return number
 is 
 	average_value number := 0;
-	city_existence varchar2;
+	city_existence number;
 begin
 	select count(*) into city_existence from agencias where cidade = city;
 	if city_existence = 0 then
-		return 'Cidade inexistente';
+		return -1;
 	else
 		select avg(valor) into average_value from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city;
 		return average_value;
