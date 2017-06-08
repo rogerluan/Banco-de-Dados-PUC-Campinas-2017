@@ -49,7 +49,7 @@ is
 begin
 	select count(*) into city_existence from agencias where cidade = city;
 	if city_existence = 0 then
-		return 'Cidade nao existente';
+		return -1;
 	else
 		select count(*) into mov_count from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city;
 		return mov_count;
