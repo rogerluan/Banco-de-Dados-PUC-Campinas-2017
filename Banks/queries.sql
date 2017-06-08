@@ -31,7 +31,7 @@ end;
 
 -- 8 -- Criar uma função para, dada uma cidade, retornar o “resultado” (em valor) de movimentos (valor dos créditos menos valor dos débitos) nela ocorridos. A cidade considerada é aquela da agência onde ocorreu o movimento e não da agência da conta.
 create or replace function balance_by_city(city in varchar2)
-return number
+return varchar2
 is
 	credit number := 0;
 	debit number := 0;
@@ -39,11 +39,11 @@ is
 begin
 	select count(*) into city_existence from agencias where cidade = city;
 	if city_existence = 0 then
-		return -1;
+		return 'Cidade inexistente';
 	else
 		select sum(valor) into credit from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city and movimentos.tipo = 'c';
 		select sum(valor) into debit from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city and movimentos.tipo = 'd';
-		return credit-debit;
+		return to_char(credit - debit);
 	end if;
 end;
 /
@@ -52,17 +52,17 @@ select balance_by_city('campinas') from dual;
 
 -- 9 -- Criar outra função para, dada uma cidade, retornar a quantidade de movimentos (número de movimentos de créditos e débitos) nela ocorridos. Idem sobre a consideração do local da agência acima.
 create or replace function mov_count_by_city(city in varchar2)
-return number
+return varchar2
 is
 	mov_count number := 0;
 	city_existence number;
 begin
 	select count(*) into city_existence from agencias where cidade = city;
 	if city_existence = 0 then
-		return -1;
+		return 'Cidade inexistente';
 	else
 		select count(*) into mov_count from movimentos where (select cidade from agencias where movimentos.num_agencia = agencias.num_agencia) = city;
-		return mov_count;
+		return to_char(mov_count);
 	end if;
 end;
 /
