@@ -106,3 +106,5 @@ for agencia in (select distinct cidade from agencias) loop
 end loop;
 end;
 /
+
+set serveroutput on
