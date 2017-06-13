@@ -48,6 +48,16 @@ insert into movimentos (num_conta, num_agencia, tipo, valor) values (7, 5, 'c', 
 insert into movimentos (num_conta, num_agencia, tipo, valor) values (8, 6, 'c', 6509);
 
 
+insert into movimentos (num_conta, num_agencia, tipo, valor) values (1, 1, 'd', 934);
+insert into movimentos (num_conta, num_agencia, tipo, valor) values (2, 1, 'c', 7549);
+
+update movimentos set tipo = 'd' where num_mov = 1;
+update movimentos set tipo = 'c' where num_mov = 2;
+
+delete from movimentos where num_mov = 3;
+delete from movimentos where num_mov = 4;
+
+
 
 
 
