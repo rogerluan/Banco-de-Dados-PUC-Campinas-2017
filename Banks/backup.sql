@@ -23,7 +23,7 @@ create table log_movimentos(
 	data date,
 	is_processed number,
 	primary key(num_log),
-	constraint num_log_mov foreign key (num_log) references movimentos(num_mov)
+	constraint num_log_mov foreign key (chave) references movimentos(num_mov)
 );
 
 -- log_movimentos sequence --
