@@ -60,14 +60,14 @@ dbms_output.put_line ('Your backup is being processed...');
 for log in (select * from log_movimentos where is_processed = 0) loop
 	select count(*) into line_exist_in_backup_table from backup_movimentos where num_mov = log.chave;
 	if log.tipo = 'd' then
-		if line_exist_in_backup_table then
+		if line_exist_in_backup_table = 1 then
 			delete from backup_movimentos where num_mov = log.chave;
 		end if;
 	else 
 		select count(*) into line_exist_in_original_table from movimentos where num_mov = log.chave;
-		if line_exist_in_original_table AND line_exist_in_backup_table then
+		if line_exist_in_original_table = 1 AND line_exist_in_backup_table = 1 then
 			update backup_movimentos set (num_conta, num_agencia, data, tipo, valor) = (select num_conta, num_agencia, data, tipo, valor from movimentos where num_mov = log.chave) where num_mov = log.chave;
-		elsif line_exist_in_original_table then 
+		elsif line_exist_in_original_table = 1 then 
 			insert into backup_movimentos (select * from movimentos where num_mov = log.chave);
 		end if;
 	end if;
