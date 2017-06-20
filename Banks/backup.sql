@@ -62,13 +62,16 @@ for log in (select * from log_movimentos where is_processed = 0) loop
 	if log.tipo = 'd' then
 		if line_exist_in_backup_table = 1 then
 			delete from backup_movimentos where num_mov = log.chave;
+			dbms_output.put_line ('Deleted record in backup table with identifier = ' || log.chave);
 		end if;
 	else 
 		select count(*) into line_exist_in_original_table from movimentos where num_mov = log.chave;
 		if line_exist_in_original_table = 1 AND line_exist_in_backup_table = 1 then
 			update backup_movimentos set (num_conta, num_agencia, data, tipo, valor) = (select num_conta, num_agencia, data, tipo, valor from movimentos where num_mov = log.chave) where num_mov = log.chave;
+			dbms_output.put_line ('Updated record in backup table with identifier = ' || log.chave);
 		elsif line_exist_in_original_table = 1 then 
 			insert into backup_movimentos (select * from movimentos where num_mov = log.chave);
+			dbms_output.put_line ('Created record in backup table with identifier = ' || log.chave);
 		end if;
 	end if;
 	update log_movimentos set is_processed = 1 where num_log = log.num_log;
