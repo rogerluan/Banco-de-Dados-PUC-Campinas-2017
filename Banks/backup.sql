@@ -44,6 +44,7 @@ for each row
 begin
 	if inserting then
 		insert into log_movimentos (chave, tipo) values (:new.num_mov, 'i');
+		dbms_output.put_line ('inserting into log_movimentos with num_mov = ' || :new.num_mov || 'complete row = ' || :new);
 	elsif deleting then
 		insert into log_movimentos (chave, tipo) values (:old.num_mov, 'd');
 	elsif updating then
