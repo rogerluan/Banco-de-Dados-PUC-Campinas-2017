@@ -61,7 +61,7 @@ for log in (select * from log_movimentos where is_processed = 0) loop
 	select count(*) into line_exist_in_backup_table from backup_movimentos where num_mov = log.chave;
 	if log.tipo = 'd' then
 		if line_exist_in_backup_table then
-			delete from backup_movimentos (select * from movimentos where num_mov = log.chave);
+			delete from backup_movimentos where num_mov = log.chave;
 		end if;
 	else 
 		select count(*) into line_exist_in_original_table from movimentos where num_mov = log.chave;
