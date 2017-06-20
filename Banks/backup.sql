@@ -39,7 +39,7 @@ end;
 /
 
 create or replace trigger trigger_logger
-before insert or delete or update on movimentos
+after insert or delete or update on movimentos
 for each row
 begin
 	if inserting then
@@ -82,3 +82,7 @@ end;
 /
 
 set serveroutput on
+
+
+select * from log_movimentos;
+select * from backup_movimentos;
