@@ -53,17 +53,25 @@ end;
 /
 
 create or replace procedure update_backup is
-	line_exist number := 0;
+	line_exist_in_original_table number := 0;
+	line_exist_in_backup_table number := 0;
 begin
 dbms_output.put_line ('Your backup is being processed...');
 for log in (select * from log_movimentos where is_processed = 0) loop
-	select count(*) into line_exist from backup_movimentos where num_mov = log.chave;
-	if line_exist = 0 then
-		insert into backup_movimentos (select * from movimentos where num_mov = log.chave); 
-	else
-		update backup_movimentos set (num_conta, num_agencia, data, tipo, valor) = (select num_conta, num_agencia, data, tipo, valor from movimentos where num_mov = log.chave) where num_mov = log.chave;
+	select count(*) into line_exist_in_backup_table from backup_movimentos where num_mov = log.chave;
+	if log.tipo = 'd' then
+		if line_exist_in_backup_table then
+			delete from backup_movimentos (select * from movimentos where num_mov = log.chave);
+		end if;
+	else 
+		select count(*) into line_exist_in_original_table from movimentos where num_mov = log.chave;
+		if line_exist_in_original_table AND line_exist_in_backup_table then
+			update backup_movimentos set (num_conta, num_agencia, data, tipo, valor) = (select num_conta, num_agencia, data, tipo, valor from movimentos where num_mov = log.chave) where num_mov = log.chave;
+		elsif line_exist_in_original_table then 
+			insert into backup_movimentos (select * from movimentos where num_mov = log.chave);
+		end if;
 	end if;
-	update log_movimentos set is_processed = 1 where num_log = log.num_log; 
+	update log_movimentos set is_processed = 1 where num_log = log.num_log;
 end loop;
 dbms_output.put_line ('Your backup is now up-to-date!');
 end;
