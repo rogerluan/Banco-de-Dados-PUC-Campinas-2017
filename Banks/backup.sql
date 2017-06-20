@@ -65,7 +65,7 @@ for log in (select * from log_movimentos where is_processed = 0) loop
 			dbms_output.put_line ('Deleted record in backup table with identifier = ' || log.chave);
 		end if;
 	else
-		dbms_output.put_line ('Inserting or deleting... Exist in original =  ' || line_exist_in_original_table || ' exist in backup = ' || line_exist_in_backup_table);
+		dbms_output.put_line ('Inserting or deleting... Exist in original =  ' || line_exist_in_original_table || ' exist in backup = ' || line_exist_in_backup_table || ' with PK = ' || log.chave);
 		select count(*) into line_exist_in_original_table from movimentos where num_mov = log.chave;
 		if line_exist_in_original_table = 1 AND line_exist_in_backup_table = 1 then
 			update backup_movimentos set (num_conta, num_agencia, data, tipo, valor) = (select num_conta, num_agencia, data, tipo, valor from movimentos where num_mov = log.chave) where num_mov = log.chave;
